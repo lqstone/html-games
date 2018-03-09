@@ -38,7 +38,8 @@ var _main = function(){
 		paddle: './img/paddle.png',
 	}
 	var game = GuaGame(30, images, function(g){
-		var scene = Scene(game);
+		// var scene = Scene(game);
+		var scene = SceneTitle(game);
 		g.runWithScene(scene)
 	});
 

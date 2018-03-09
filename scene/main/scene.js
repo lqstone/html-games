@@ -5,6 +5,7 @@ var Scene = function(game){
 	}
 	var paddle = Paddle(game);
 	var ball = Ball(game);
+	var ball = Ball(game);
 	var score = 0;
 	// 循环很多砖块
 	window.blocks = loadLevel(game, 1);
@@ -34,6 +35,9 @@ var Scene = function(game){
 	})
 		
 	s.update = function(){
+		if(window.paused){
+			return;
+		}
 		ball.move()
 		// 判断球和板子相撞
 		if(paddle.collide(ball)) {
@@ -50,6 +54,13 @@ var Scene = function(game){
 					score += 10;
 				}
 			}
+		}
+
+		// 判断游戏结束
+		if (ball.y > paddle.y) {
+			// 场景替换
+			var end = SceneEnd(game)
+			game.replaceScene(end)
 		}
 	}
 
